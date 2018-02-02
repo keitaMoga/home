@@ -1,0 +1,7 @@
+#!/bin/sh
+
+key="b"
+while [ "$key" = "a" ]
+do
+  echo "ok"
+done
