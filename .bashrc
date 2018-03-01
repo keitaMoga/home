@@ -80,6 +80,8 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias ll='ls --color=auto -las'
+    alias llh='ls --color=auto -lhas'
+    alias lls='ls --color=auto -lhas'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -120,7 +122,10 @@ if ! shopt -oq posix; then
   fi
 fi
 function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+    git branch --no-color 2> /dev/null | grep keita_home > /dev/null
+    if [ $? -ne 0 ]; then
+        git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+    fi
 }
 function promps {
     # 色は気分で変えたいかもしれないので変す宣言しておく
